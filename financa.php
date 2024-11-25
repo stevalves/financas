@@ -62,7 +62,7 @@ $financas = mysqli_query($conn, $sql);
                                         <td><?php echo $financa['value']; ?></td>
                                         <td><?php echo $financa['transaction']; ?></td>
                                         <td>
-                                            <a href="financa-edit.php?id=<?=$financa['id']?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                            <a href="edit_financa.php?id=<?=$financa['id']?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i></a>
                                             <form action="acoes.php" method="POST" class="d-inline">
                                                 <button onclick="return confirm('Tem certeza que deseja excluir?')" name="delete_financa" type="submit" value="<?=$financa['id']?>" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
                                             </form>

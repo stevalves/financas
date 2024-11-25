@@ -52,3 +52,46 @@ if (isset($_POST['edit_month'])) {
     header("Location: index.php");
     exit;
 }
+
+if (isset($_POST['edit_financa'])) {
+    $financaId = mysqli_real_escape_string($conn, $_POST['financa_id']);
+    $category = mysqli_real_escape_string($conn, $_POST['txtCategory']);
+    $month = mysqli_real_escape_string($conn, $_POST['txtMonth']);
+    $year = mysqli_real_escape_string($conn, $_POST['txtYear']);
+    $value = mysqli_real_escape_string($conn, $_POST['txtValue']);
+    $transaction = mysqli_real_escape_string($conn, $_POST['txtTransaction']);
+
+    // arrumar update com outra tabela
+    $sql = "UPDATE financa SET category = '{$category}', month = '{$month}', year = '{$year}', value = '{$value}', transaction = '{$transaction}' WHERE id = '{$financaId}'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $_SESSION['message'] = "Finança {$financaId} atualizada com sucesso!";
+        $_SESSION['type'] = 'success';
+    } else {
+        $_SESSION['message'] = "Não foi possível atualizar a finança {$financaId}";
+        $_SESSION['type'] = 'error';
+    }
+
+    header("Location: index.php");
+    exit;
+}
+
+if (isset($_POST['delete_financa'])) {
+    $financaId = mysqli_real_escape_string($conn, $_POST['delete_financa']);
+    $sql = "DELETE FROM transaction WHERE id = '$financaId'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $_SESSION['message'] = "Finança com ID {$financaId} excluída com sucesso!";
+        $_SESSION['type'] = 'success';
+    } else {
+        $_SESSION['message'] = "Ops! Não foi possível excluir a finança";
+        $_SESSION['type'] = 'error';
+    }
+
+    header('Location: index.php');
+    exit;
+}
