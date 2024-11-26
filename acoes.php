@@ -31,6 +31,17 @@ if (isset($_POST['create_financa'])) {
     exit();
 }
 
+if (isset($_POST['create_category'])) {
+    $year = trim($_POST['txtName']);
+
+    $sql = "INSERT INTO category (name) VALUES('$name')";
+
+    mysqli_query($conn, $sql);
+
+    header('Location: category.php');
+    exit();
+}
+
 if (isset($_POST['delete_month'])) {
     $monthId = mysqli_real_escape_string($conn, $_POST['delete_month']);
     $sql = "DELETE FROM month WHERE id = '$monthId'";
@@ -42,6 +53,24 @@ if (isset($_POST['delete_month'])) {
         $_SESSION['type'] = 'success';
     } else {
         $_SESSION['message'] = "Ops! Não foi possível excluir o mês";
+        $_SESSION['type'] = 'error';
+    }
+
+    header('Location: index.php');
+    exit;
+}
+
+if (isset($_POST['delete_category'])) {
+    $categoryId = mysqli_real_escape_string($conn, $_POST['delete_category']);
+    $sql = "DELETE FROM category WHERE id = '$categoryId'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $_SESSION['message'] = "Categoria com ID {$categoryId} excluída com sucesso!";
+        $_SESSION['type'] = 'success';
+    } else {
+        $_SESSION['message'] = "Ops! Não foi possível excluir a categoria";
         $_SESSION['type'] = 'error';
     }
 
@@ -88,6 +117,26 @@ if (isset($_POST['edit_financa'])) {
         $_SESSION['type'] = 'success';
     } else {
         $_SESSION['message'] = "Não foi possível atualizar a finança {$financaId}";
+        $_SESSION['type'] = 'error';
+    }
+
+    header("Location: index.php");
+    exit;
+}
+
+if (isset($_POST['edit_category'])) {
+    $categoryId = mysqli_real_escape_string($conn, $_POST['category_id']);
+    $name = mysqli_real_escape_string($conn, $_POST['txtName']);
+
+    $sql = "UPDATE category SET name = '{$name}' WHERE id = '{$categoryId}'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $_SESSION['message'] = "Categoria {$categoryId} atualizada com sucesso!";
+        $_SESSION['type'] = 'success';
+    } else {
+        $_SESSION['message'] = "Não foi possível atualizar a categoria {$categoryId}";
         $_SESSION['type'] = 'error';
     }
 
