@@ -27,7 +27,8 @@ $meses = mysqli_fetch_all($meses_result, MYSQLI_ASSOC);
                     <div class="card-header">
                         <h4>
                             Controle de Finanças
-                            <a href="create_month.php" class="btn btn-primary float-end">Adicionar</a>
+                            <a href="create_month.php" class="btn btn-primary float-end">Adicionar Mês</a>
+                            <a href="category.php" class="btn btn-primary float-end mx-4">Categorias</a>
                         </h4>
                     </div>
                     <div class="card-body">
