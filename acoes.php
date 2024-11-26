@@ -2,9 +2,20 @@
 session_start();
 require_once('conexao.php');
 
+// Month
 if (isset($_POST['create_month'])) {
     $year = trim($_POST['txtYear']);
     $month = trim($_POST['txtMonth']);
+
+    $sql_ver = "SELECT * FROM month WHERE year = '{$year}' AND month = '{$month}'";
+    $result = mysqli_query($conn, $sql_ver);
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['message'] = "Mês e ano já existente!";
+        $_SESSION['type'] = 'error';
+
+        header('Location: index.php');
+        exit;
+    }
 
     $sql = "INSERT INTO month (year, month) VALUES('$year', '$month')";
 
@@ -32,35 +43,6 @@ if (isset($_POST['delete_month'])) {
     exit;
 }
 
-if (isset($_POST['create_category'])) {
-    $name = trim($_POST['txtName']);
-
-    $sql = "INSERT INTO category (name) VALUES('$name')";
-
-    mysqli_query($conn, $sql);
-
-    header('Location: category.php');
-    exit();
-}
-
-if (isset($_POST['delete_category'])) {
-    $categoryId = mysqli_real_escape_string($conn, $_POST['delete_category']);
-    $sql = "DELETE FROM category WHERE id = '$categoryId'";
-
-    mysqli_query($conn, $sql);
-
-    if (mysqli_affected_rows($conn) > 0) {
-        $_SESSION['message'] = "Categoria com ID {$categoryId} excluída com sucesso!";
-        $_SESSION['type'] = 'success';
-    } else {
-        $_SESSION['message'] = "Ops! Não foi possível excluir a categoria";
-        $_SESSION['type'] = 'error';
-    }
-
-    header('Location: category.php');
-    exit;
-}
-
 if (isset($_POST['edit_month'])) {
     $monthId = mysqli_real_escape_string($conn, $_POST['month_id']);
     $year = mysqli_real_escape_string($conn, $_POST['txtYear']);
@@ -82,6 +64,57 @@ if (isset($_POST['edit_month'])) {
     exit;
 }
 
+// Category
+if (isset($_POST['create_category'])) {
+    $name = trim($_POST['txtName']);
+
+    $sql = "INSERT INTO category (name) VALUES('$name')";
+
+    mysqli_query($conn, $sql);
+
+    header('Location: category.php');
+    exit();
+}
+
+if (isset($_POST['edit_category'])) {
+    $categoryId = mysqli_real_escape_string($conn, $_POST['category_id']);
+    $name = mysqli_real_escape_string($conn, $_POST['txtName']);
+
+    $sql = "UPDATE category SET name = '{$name}' WHERE id = '{$categoryId}'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $_SESSION['message'] = "Categoria {$categoryId} atualizada com sucesso!";
+        $_SESSION['type'] = 'success';
+    } else {
+        $_SESSION['message'] = "Não foi possível atualizar a categoria {$categoryId}";
+        $_SESSION['type'] = 'error';
+    }
+
+    header("Location: category.php");
+    exit;
+}
+
+if (isset($_POST['delete_category'])) {
+    $categoryId = mysqli_real_escape_string($conn, $_POST['delete_category']);
+    $sql = "DELETE FROM category WHERE id = '$categoryId'";
+
+    mysqli_query($conn, $sql);
+
+    if (mysqli_affected_rows($conn) > 0) {
+        $_SESSION['message'] = "Categoria com ID {$categoryId} excluída com sucesso!";
+        $_SESSION['type'] = 'success';
+    } else {
+        $_SESSION['message'] = "Ops! Não foi possível excluir a categoria";
+        $_SESSION['type'] = 'error';
+    }
+
+    header('Location: category.php');
+    exit;
+}
+
+// Transaction
 if (isset($_POST['create_financa'])) {
     $monthId = trim($_POST['month_id']);
     $category = trim($_POST['txtCategory']);
@@ -127,26 +160,6 @@ if (isset($_POST['edit_financa'])) {
     }
 
     header("Location: financa.php?id=$monthId");
-    exit;
-}
-
-if (isset($_POST['edit_category'])) {
-    $categoryId = mysqli_real_escape_string($conn, $_POST['category_id']);
-    $name = mysqli_real_escape_string($conn, $_POST['txtName']);
-
-    $sql = "UPDATE category SET name = '{$name}' WHERE id = '{$categoryId}'";
-
-    mysqli_query($conn, $sql);
-
-    if (mysqli_affected_rows($conn) > 0) {
-        $_SESSION['message'] = "Categoria {$categoryId} atualizada com sucesso!";
-        $_SESSION['type'] = 'success';
-    } else {
-        $_SESSION['message'] = "Não foi possível atualizar a categoria {$categoryId}";
-        $_SESSION['type'] = 'error';
-    }
-
-    header("Location: category.php");
     exit;
 }
 

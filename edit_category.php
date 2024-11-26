@@ -34,7 +34,7 @@ if (!isset($_GET['id'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            Editar Categoria 
+                            Editar Categoria
                             <a href="category.php" class="btn btn-danger float-end">Voltar</a>
                         </h4>
                     </div>

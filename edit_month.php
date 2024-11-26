@@ -50,11 +50,23 @@ if (!isset($_GET['id'])) {
                                 </div>
                                 <div class="mb-3">
                                     <label for="txtMonth">Mês</label>
-                                    <input type="text" name="txtMonth" id="txtMonth" value="<?= $month['month'] ?>" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" name="edit_month" class="btn btn-primary float-end">Salvar</button>
-                                </div>
+                                    <select name="txtMonth" id="txtMonth" class="form-select">
+                                        <option value="Janeiro" <?= $month['month'] == 'Janeiro' ? 'selected' : "" ?>>Janeiro</option>
+                                        <option value="Feveiro" <?= $month['month'] == 'Feveiro' ? 'selected' : "" ?>>Feveiro</option>
+                                        <option value="Março" <?= $month['month'] == 'Março' ? 'selected' : "" ?>>Março</option>
+                                        <option value="Abril" <?= $month['month'] == 'Abril' ? 'selected' : "" ?>>Abril</option>
+                                        <option value="Maio" <?= $month['month'] == 'Maio' ? 'selected' : "" ?>>Maio</option>
+                                        <option value="Junho" <?= $month['month'] == 'Junho' ? 'selected' : "" ?>>Junho</option>
+                                        <option value="Julho" <?= $month['month'] == 'Julho' ? 'selected' : "" ?>>Julho</option>
+                                        <option value="Agosto" <?= $month['month'] == 'Agosto' ? 'selected' : "" ?>>Agosto</option>
+                                        <option value="Setembro" <?= $month['month'] == 'Setembro' ? 'selected' : "" ?>>Setembro</option>
+                                        <option value="Outubro" <?= $month['month'] == 'Outubro' ? 'selected' : "" ?>>Outubro</option>
+                                        <option value="Novembro" <?= $month['month'] == 'Novembro' ? 'selected' : "" ?>>Novembro</option>
+                                        <option value="Dezembro" <?= $month['month'] == 'Dezembro' ? 'selected' : "" ?>>Dezembro</option>
+                                    </select>
+                                    <div class="mb-3">
+                                        <button type="submit" name="edit_month" class="btn btn-primary float-end">Salvar</button>
+                                    </div>
                             </form>
                         <?php
                         else:
