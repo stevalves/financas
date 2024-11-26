@@ -2,6 +2,7 @@
 session_start();
 require_once("conexao.php");
 
+$monthId = mysqli_real_escape_string($conn, $_GET['id']);
 $sql = "SELECT 
             t.id, 
             c.name AS category, 
@@ -12,7 +13,8 @@ $sql = "SELECT
             t.created_at 
         FROM transaction t
         INNER JOIN category c ON t.category_id = c.id
-        INNER JOIN month m ON t.month_id = m.id";
+        INNER JOIN month m ON t.month_id = m.id
+        WHERE t.month_id = '$monthId'";
 
 $financas = mysqli_query($conn, $sql);
 
@@ -34,7 +36,7 @@ $financas = mysqli_query($conn, $sql);
                     <div class="card-header">
                         <h4>
                             Controle de Finanças
-                            <a href="financa-create.php" class="btn btn-primary float-end">Adicionar</a>
+                            <a href="create_financa.php?month_id=<?=$monthId ?>" class="btn btn-primary float-end">Adicionar</a>
                             <a href="index.php" class="btn btn-danger float-end mx-2">Voltar</a>
                         </h4>
                     </div>

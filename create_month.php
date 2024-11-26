@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            Adicionar Mês <i class="bi bi-person-fill-add"></i>
+                            Adicionar Mês
                             <a href="index.php" class="btn btn-danger float-end">Voltar</a>
                         </h4>
                     </div>

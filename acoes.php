@@ -14,6 +14,23 @@ if (isset($_POST['create_month'])) {
     exit();
 }
 
+if (isset($_POST['create_financa'])) {
+    $category = trim($_POST['txtCategory']);
+    $month = trim($_POST['txtMonth']);
+    $year = trim( $_POST['txtYear']);
+    $value = trim($_POST['txtValue']);
+    $transaction = trim($_POST['txtTransaction']);
+
+//arrumar
+
+    $sql = "INSERT INTO transaction (category, month, year, value, transaction) VALUES('$category', '$month', '$year', '$value', '$transaction')";
+
+    mysqli_query($conn, $sql);
+
+    header('Location: index.php');
+    exit();
+}
+
 if (isset($_POST['delete_month'])) {
     $monthId = mysqli_real_escape_string($conn, $_POST['delete_month']);
     $sql = "DELETE FROM month WHERE id = '$monthId'";
