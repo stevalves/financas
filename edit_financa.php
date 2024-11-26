@@ -11,6 +11,7 @@ if (!isset($_GET['id'])) {
     $sql = "SELECT 
             t.id, 
             c.name AS category, 
+            m.id as month_id,
             m.month, 
             m.year,
             t.type AS transaction, 
@@ -54,6 +55,7 @@ if (!isset($_GET['id'])) {
                         ?>
                             <form action="acoes.php" method="POST">
                                 <input type="hidden" name="financa_id" value="<?= $financa['id'] ?>">
+                                <input type="hidden" name="month_id" value="<?= $financa['month_id'] ?>">
                                 <div class="mb-3">
                                     <label for="txtCategory">Categoria</label>
                                     <input type="text" name="txtCategory" id="txtCategory" value="<?= $financa['category'] ?>" class="form-control">
@@ -61,37 +63,37 @@ if (!isset($_GET['id'])) {
                                 <div class="mb-3">
                                     <label for="txtMonth">Mês</label>
                                     <select name="txtMonth" id="txtMonth" class="form-select">
-                                        <option value="Janeiro" <?= $financa['month'] == 'Janeiro' ? 'selected' : "" ?>>Janeiro</option>
-                                        <option value="Feveiro" <?= $financa['month'] == 'Feveiro' ? 'selected' : "" ?>>Feveiro</option>
-                                        <option value="Março" <?= $financa['month'] == 'Março' ? 'selected' : "" ?>>Março</option>
-                                        <option value="Abril" <?= $financa['month'] == 'Abril' ? 'selected' : "" ?>>Abril</option>
-                                        <option value="Maio" <?= $financa['month'] == 'Maio' ? 'selected' : "" ?>>Maio</option>
-                                        <option value="Junho" <?= $financa['month'] == 'Junho' ? 'selected' : "" ?>>Junho</option>
-                                        <option value="Julho" <?= $financa['month'] == 'Julho' ? 'selected' : "" ?>>Julho</option>
-                                        <option value="Agosto" <?= $financa['month'] == 'Agosto' ? 'selected' : "" ?>>Agosto</option>
+                                        <option value="Janeiro" <?= $financa['month'] == 'Janeiro'  ? 'selected' : "" ?>>Janeiro</option>
+                                        <option value="Feveiro" <?= $financa['month'] == 'Feveiro'  ? 'selected' : "" ?>>Feveiro</option>
+                                        <option value="Março" <?= $financa['month'] == 'Março'    ? 'selected' : "" ?>>Março</option>
+                                        <option value="Abril" <?= $financa['month'] == 'Abril'    ? 'selected' : "" ?>>Abril</option>
+                                        <option value="Maio" <?= $financa['month'] == 'Maio'     ? 'selected' : "" ?>>Maio</option>
+                                        <option value="Junho" <?= $financa['month'] == 'Junho'    ? 'selected' : "" ?>>Junho</option>
+                                        <option value="Julho" <?= $financa['month'] == 'Julho'    ? 'selected' : "" ?>>Julho</option>
+                                        <option value="Agosto" <?= $financa['month'] == 'Agosto'   ? 'selected' : "" ?>>Agosto</option>
                                         <option value="Setembro" <?= $financa['month'] == 'Setembro' ? 'selected' : "" ?>>Setembro</option>
-                                        <option value="Outubro" <?= $financa['month'] == 'Outubro' ? 'selected' : "" ?>>Outubro</option>
+                                        <option value="Outubro" <?= $financa['month'] == 'Outubro'  ? 'selected' : "" ?>>Outubro</option>
                                         <option value="Novembro" <?= $financa['month'] == 'Novembro' ? 'selected' : "" ?>>Novembro</option>
                                         <option value="Dezembro" <?= $financa['month'] == 'Dezembro' ? 'selected' : "" ?>>Dezembro</option>
                                     </select>
-                                <div class="mb-3">
-                                    <label for="txtYear">Ano</label>
-                                    <input type="text" name="txtYear" id="txtYear" value="<?= $financa['year'] ?>" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtValue">Valor</label>
-                                    <input type="text" name="txtValue" id="txtValue" value="<?= $financa['value'] ?>" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="txtTransaction">Transação</label>
-                                    <select name="txtTransaction" id="txtTransaction" class="form-select">
-                                        <option value="Entrada" <?= $financa['transaction'] == 'Entrada' ? 'selected' : "" ?>>Entrada</option>
-                                        <option value="Saída" <?= $financa['transaction'] == 'Saída' ? 'selected' : "" ?>>Saída</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" name="edit_financa" class="btn btn-primary float-end">Salvar</button>
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="txtYear">Ano</label>
+                                        <input type="text" name="txtYear" id="txtYear" value="<?= $financa['year'] ?>" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="txtValue">Valor</label>
+                                        <input type="text" name="txtValue" id="txtValue" value="<?= $financa['value'] ?>" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="txtTransaction">Transação</label>
+                                        <select name="txtTransaction" id="txtTransaction" class="form-select">
+                                            <option value="Entrada" <?= $financa['transaction'] == 'Entrada' ? 'selected' : "" ?>>Entrada</option>
+                                            <option value="Saída" <?= $financa['transaction'] == 'Saída' ? 'selected' : "" ?>>Saída</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" name="edit_financa" class="btn btn-primary float-end">Salvar</button>
+                                    </div>
                             </form>
                         <?php
                         else:

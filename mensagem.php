@@ -9,12 +9,12 @@ if (isset($_SESSION['type']) && $_SESSION['type'] == 'success') {
 if (isset($_SESSION['message'])):
 ?>
 
-<div class="<?=$typeCss?>" role="alert">
-    <?php echo $_SESSION['message']; ?>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    <div class="<?= $typeCss ?>" role="alert">
+        <?php echo $_SESSION['message']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
 <?php
-unset($_SESSION['message']);
+    unset($_SESSION['message']);
 endif;
 ?>

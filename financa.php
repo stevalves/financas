@@ -6,10 +6,10 @@ $monthId = mysqli_real_escape_string($conn, $_GET['id']);
 $sql = "SELECT 
             t.id, 
             c.name AS category, 
-            m.month, 
+            m.month,
             m.year,
-            t.type AS transaction, 
-            t.value, 
+            t.type AS transaction,
+            t.value,
             t.created_at 
         FROM transaction t
         INNER JOIN category c ON t.category_id = c.id
@@ -98,6 +98,7 @@ $amount = $valor_entrada - $valor_saida;
                                         <td>
                                             <a href="edit_financa.php?id=<?= $financa['id'] ?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i></a>
                                             <form action="acoes.php" method="POST" class="d-inline">
+                                                <input type="hidden" name="monthId" value="<?= $monthId ?>">
                                                 <button onclick="return confirm('Tem certeza que deseja excluir?')" name="delete_financa" type="submit" value="<?= $financa['id'] ?>" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></button>
                                             </form>
                                         </td>

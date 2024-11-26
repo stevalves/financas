@@ -14,23 +14,6 @@ if (isset($_POST['create_month'])) {
     exit();
 }
 
-if (isset($_POST['create_financa'])) {
-    $category = trim($_POST['txtCategory']);
-    $month = trim($_POST['txtMonth']);
-    $year = trim( $_POST['txtYear']);
-    $value = trim($_POST['txtValue']);
-    $transaction = trim($_POST['txtTransaction']);
-
-//arrumar
-
-    $sql = "INSERT INTO transaction (category, month, year, value, transaction) VALUES('$category', '$month', '$year', '$value', '$transaction')";
-
-    mysqli_query($conn, $sql);
-
-    header('Location: index.php');
-    exit();
-}
-
 if (isset($_POST['delete_month'])) {
     $monthId = mysqli_real_escape_string($conn, $_POST['delete_month']);
     $sql = "DELETE FROM month WHERE id = '$monthId'";
@@ -70,6 +53,21 @@ if (isset($_POST['edit_month'])) {
     exit;
 }
 
+if (isset($_POST['create_financa'])) {
+    $monthId = trim($_POST['month_id']);
+    $category = trim($_POST['txtCategory']);
+    $year = trim($_POST['txtYear']);
+    $value = trim($_POST['txtValue']);
+    $transaction = trim($_POST['txtTransaction']);
+
+    $sql = "INSERT INTO transaction (type, value, created_at, month_id, category_id) VALUES('$transaction', '$value', '$year', '$monthId', '1')";
+
+    mysqli_query($conn, $sql);
+
+    header("Location: financa.php?id=$monthId");
+    exit();
+}
+
 if (isset($_POST['edit_financa'])) {
     $financaId = mysqli_real_escape_string($conn, $_POST['financa_id']);
     $category = mysqli_real_escape_string($conn, $_POST['txtCategory']);
@@ -97,6 +95,7 @@ if (isset($_POST['edit_financa'])) {
 
 if (isset($_POST['delete_financa'])) {
     $financaId = mysqli_real_escape_string($conn, $_POST['delete_financa']);
+    $monthId = mysqli_real_escape_string($conn, $_POST['monthId']);
     $sql = "DELETE FROM transaction WHERE id = '$financaId'";
 
     mysqli_query($conn, $sql);
@@ -109,6 +108,6 @@ if (isset($_POST['delete_financa'])) {
         $_SESSION['type'] = 'error';
     }
 
-    header('Location: index.php');
+    header("Location: financa.php?id=$monthId");
     exit;
 }

@@ -1,3 +1,9 @@
+<?php
+session_start();
+require_once('conexao.php');
+$monthId = mysqli_real_escape_string($conn, $_GET['month_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -23,26 +29,10 @@
                     </div>
                     <div class="card-body">
                         <form action="acoes.php" method="POST">
+                            <input type="hidden" name="month_id" value="<?= $monthId ?>">
                             <div class="mb-3">
                                 <label for="txtCategory">Categoria</label>
                                 <input type="text" name="txtCategory" id="txtCategory" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label for="txtMonth">Mês</label>
-                                    <select name="txtMonth" id="txtMonth" class="form-select">
-                                        <option >Janeiro</option>
-                                        <option >Feveiro</option>
-                                        <option >Março</option>
-                                        <option >Abril</option>
-                                        <option >Maio</option>
-                                        <option >Junho</option>
-                                        <option >Julho</option>
-                                        <option >Agosto</option>
-                                        <option >Setembro</option>
-                                        <option >Outubro</option>
-                                        <option >Novembro</option>
-                                        <option >Dezembro</option>
-                                    </select>
                             </div>
                             <div class="mb-3">
                                 <label for="txtYear">Ano</label>
@@ -55,8 +45,8 @@
                             <div class="mb-3">
                                 <label for="txtTransaction">Transação</label>
                                 <select name="txtTransaction" id="txtTransaction" class="form-select">
-                                    <option >Entrada</option>
-                                    <option >Saída</option>
+                                    <option>Entrada</option>
+                                    <option>Saída</option>
                                 </select>
                             </div>
                             <div class="mb-3">
