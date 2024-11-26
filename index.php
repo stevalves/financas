@@ -2,9 +2,18 @@
 session_start();
 require_once("conexao.php");
 
-$sql = "SELECT * FROM month;";
-$meses_result = mysqli_query($conn, $sql);
-$meses = mysqli_fetch_all($meses_result, MYSQLI_ASSOC);
+$sql = "SELECT * FROM month";
+$meses = mysqli_query($conn, $sql);
+
+$sql_amount_meses = "SELECT 
+                        m.id AS monthId,
+                        COALESCE(SUM(CASE WHEN t.type = 'Entrada' THEN t.value ELSE 0 END), 0) 
+                        - COALESCE(SUM(CASE WHEN t.type = 'Saída' THEN t.value ELSE 0 END), 0) AS amount
+                    FROM month m
+                    INNER JOIN transaction t ON t.month_id = m.id
+                    GROUP BY m.id;";
+
+$amount_meses = mysqli_query($conn, $sql_amount_meses);
 
 ?>
 <!DOCTYPE html>
@@ -55,10 +64,19 @@ $meses = mysqli_fetch_all($meses_result, MYSQLI_ASSOC);
                                             <h6>
                                                 <?php echo $mes['month']; ?>
                                             </h6>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <p class="lead" style="height: fit-content; margin: 0;">
-                                                    <?php echo $mes['id']; ?>
-                                                </p>
+                                            <div class="d-flex d-grid justify-content-between align-items-center">
+                                                <?php foreach ($amount_meses as $amount):
+                                                    if ($amount['monthId'] == $mes['id']) {
+                                                        if ($amount['amount'] > 0) {
+                                                            echo "<h5 class='text-success' style='height: fit-content; margin: 0;'>R$ " . number_format($amount['amount'], 2) . "</h5>";
+                                                        } else if ($amount['amount'] < 0) {
+                                                            echo "<h5 class='text-danger' style='height: fit-content; margin: 0;'>R$ " . number_format($amount['amount'], 2) . "</h5>";
+                                                        } else {
+                                                            echo "<h5 class='text-warning' style='height: fit-content; margin: 0;'>R$ 0.00</h5>";
+                                                        }
+                                                    }
+                                                endforeach ?>
+                                                <p></p>
                                                 <div class="g-2">
                                                     <a href="edit_month.php?id=<?= $mes['id'] ?>" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-fill"></i></a>
                                                     <form action="acoes.php" method="POST" class="d-inline">
