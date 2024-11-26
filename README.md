@@ -1,28 +1,46 @@
-# Finanças
+# 💰 **Finanças**
 
-Este projeto foi desenvolvido como avaliação da P2 para a disciplina ministrada pelo professor Valdir. O objetivo era criar uma aplicação para gerir finanças, aplicando todos os conceitos e técnicas aprendidos em aula.
+> Um projeto para gerenciamento financeiro desenvolvido como parte da avaliação **P2** na disciplina **Desenvolvimento Web**, ministrada pelo professor **Valdir**.
 
-## Descrição
+---
 
-O projeto Finanças foi desenvolvido para gerenciar seu dinheiro de forma simples e eficiente. A aplicação permite adicionar, editar e excluir Meses, Categorias e Movimentações, com foco na responsividade e boa estruturação de banco de dados.
+## 📝 **Descrição**
 
-## Tecnologias Utilizadas
+O **Finanças** é uma aplicação simples e eficiente para gerenciar suas finanças pessoais. Com ele, você pode:  
+- ➕ **Adicionar**, ✏️ **Editar** e 🗑️ **Excluir** **Meses**, **Categorias** e **Movimentações**.  
+- 📱 Explorar uma interface **responsiva** e **intuitiva**.  
+- 💾 Contar com uma estrutura sólida de **banco de dados** para armazenar suas informações com segurança.  
 
-- **HTML5**: Estruturação e marcação da página.
-- **Bootstrap5**: Estilos e layout.
-- **PHP**: Lógica e interatividade.
-- **MySQL**: Banco de dados.
+---
 
-## Instalação
+## 🛠️ **Tecnologias Utilizadas**
 
-1. Clone o repositório:
+- **HTML5**: Para estruturação e marcação da página.  
+- **Bootstrap 5**: Para criar estilos modernos e layouts responsivos.  
+- **PHP**: Para implementar a lógica e interatividade da aplicação.  
+- **MySQL**: Para gerenciar e armazenar os dados do sistema.  
+
+---
+
+## 🚀 **Instalação**
+
+Siga os passos abaixo para configurar o projeto no seu ambiente local:
+
+1. **Clone o repositório:**
    ```bash
    git clone git@github.com:stevalves/financas.git
+   
+2. **Configure o servidor local:**
+- Certifique-se de ter o XAMPP instalado.
+- Inicie os serviços Apache e MySQL pelo painel do XAMPP.
+  
+3. **Cole o projeto no diretório correto:**
+- No diretório do XAMPP, navegue até a pasta htdocs.
+- Cole o repositório clonado nessa pasta.
 
-2. Com o `xampp` instalado, você irá rodar o apache e o mysql;
+4. **Importe o banco de dados:**
+- Acesse o phpMyAdmin pelo navegador em localhost/phpmyadmin.
+- Importe o arquivo .sql que está localizado dentro do repositório.
 
-3. No diretório do `xampp`, dentro do htdocs você ira colar o repositório clonado;
-
-4. Abrindo o `localhost/phpmyadmin` você ira importar o sql que se encontra dentro do repositório;
-
-5. Para finalizar, entre em `localhost/todolist` pelo seu navegador.
+5. **Acesse a aplicação:**
+- Abra o navegador e vá até localhost/financas.
