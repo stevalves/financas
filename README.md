@@ -17,7 +17,7 @@ O projeto Finanças foi desenvolvido para gerenciar seu dinheiro de forma simple
 
 1. Clone o repositório:
    ```bash
-   git clone git@github.com:stevalves/todolist-php.git
+   git clone git@github.com:stevalves/financas.git
 
 2. Com o `xampp` instalado, você irá rodar o apache e o mysql;
 
