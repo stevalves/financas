@@ -1,4 +1,5 @@
 # 💰 **Finanças**
+### [![](https://img.shields.io/badge/-youtube-%23333?style=for-the-badge&logo=youtube&logoColor=red)](https://youtu.be/QZq8zF3BIxc)
 
 > Um projeto para gerenciamento financeiro desenvolvido como parte da avaliação **P2** na disciplina **Desenvolvimento Web**, ministrada pelo professor **Valdir**.
 
