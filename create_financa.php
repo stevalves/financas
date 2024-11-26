@@ -2,6 +2,9 @@
 session_start();
 require_once('conexao.php');
 $monthId = mysqli_real_escape_string($conn, $_GET['month_id']);
+
+$sql = "SELECT * FROM category";
+$categories = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -32,15 +35,24 @@ $monthId = mysqli_real_escape_string($conn, $_GET['month_id']);
                             <input type="hidden" name="month_id" value="<?= $monthId ?>">
                             <div class="mb-3">
                                 <label for="txtCategory">Categoria</label>
-                                <input type="text" name="txtCategory" id="txtCategory" class="form-control">
+                                <select name="txtCategory" id="txtCategory" class="form-select">
+                                    <option selected disabled>Selecione uma categoria</option>
+                                    <?php foreach ($categories as $category): ?>
+                                        <option value="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label for="txtYear">Ano</label>
-                                <input type="text" name="txtYear" id="txtYear" class="form-control">
+                                <label for="txtDate">Data</label>
+                                <input type="date" name="txtDate" id="txtDate" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="txtDescription">Descrição</label>
+                                <input type="text" name="txtDescription" id="txtDescription" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="txtValue">Valor</label>
-                                <input type="text" name="txtValue" id="txtValue" class="form-control">
+                                <input type="number" name="txtValue" id="txtValue" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="txtTransaction">Transação</label>

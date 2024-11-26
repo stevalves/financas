@@ -57,7 +57,7 @@ if (isset($_POST['delete_category'])) {
         $_SESSION['type'] = 'error';
     }
 
-    header('Location: index.php');
+    header('Location: category.php');
     exit;
 }
 
@@ -85,11 +85,12 @@ if (isset($_POST['edit_month'])) {
 if (isset($_POST['create_financa'])) {
     $monthId = trim($_POST['month_id']);
     $category = trim($_POST['txtCategory']);
-    $year = trim($_POST['txtYear']);
+    $description = trim($_POST['txtDescription']);
+    $date = trim($_POST['txtDate']);
     $value = trim($_POST['txtValue']);
     $transaction = trim($_POST['txtTransaction']);
 
-    $sql = "INSERT INTO transaction (type, value, created_at, month_id, category_id) VALUES('$transaction', '$value', '$year', '$monthId', '1')";
+    $sql = "INSERT INTO transaction (type, value, description, created_at, month_id, category_id) VALUES('$transaction', '$value', '$description', '$date', '$monthId', '$category')";
 
     mysqli_query($conn, $sql);
 
@@ -99,14 +100,21 @@ if (isset($_POST['create_financa'])) {
 
 if (isset($_POST['edit_financa'])) {
     $financaId = mysqli_real_escape_string($conn, $_POST['financa_id']);
-    $category = mysqli_real_escape_string($conn, $_POST['txtCategory']);
-    $month = mysqli_real_escape_string($conn, $_POST['txtMonth']);
-    $year = mysqli_real_escape_string($conn, $_POST['txtYear']);
+    $monthId = mysqli_real_escape_string($conn, $_POST['month_id']);
+    $description = mysqli_real_escape_string($conn, $_POST['txtDescription']);
+    $categoryId = mysqli_real_escape_string($conn, $_POST['txtCategory']);
+    $date = mysqli_real_escape_string($conn, $_POST['txtDate']);
     $value = mysqli_real_escape_string($conn, $_POST['txtValue']);
     $transaction = mysqli_real_escape_string($conn, $_POST['txtTransaction']);
 
     // arrumar update com outra tabela
-    $sql = "UPDATE financa SET category = '{$category}', month = '{$month}', year = '{$year}', value = '{$value}', transaction = '{$transaction}' WHERE id = '{$financaId}'";
+    $sql = "UPDATE transaction SET type = '{$transaction}', 
+                                   description = '{$description}',
+                                   value = '{$value}',
+                                   created_at = '{$date}',
+                                   category_id = '{$categoryId}',
+                                   month_id = '{$monthId}'
+                                   WHERE id = '{$financaId}'";
 
     mysqli_query($conn, $sql);
 
@@ -118,7 +126,7 @@ if (isset($_POST['edit_financa'])) {
         $_SESSION['type'] = 'error';
     }
 
-    header("Location: index.php");
+    header("Location: financa.php?id=$monthId");
     exit;
 }
 
@@ -138,7 +146,7 @@ if (isset($_POST['edit_category'])) {
         $_SESSION['type'] = 'error';
     }
 
-    header("Location: index.php");
+    header("Location: category.php");
     exit;
 }
 

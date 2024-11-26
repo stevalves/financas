@@ -7,9 +7,10 @@ $sql = "SELECT
             t.id, 
             c.name AS category, 
             m.month,
-            m.year,
             t.type AS transaction,
             t.value,
+            t.created_at as date,
+            t.description,
             t.created_at 
         FROM transaction t
         INNER JOIN category c ON t.category_id = c.id
@@ -79,8 +80,9 @@ $amount = $valor_entrada - $valor_saida;
                                 <tr>
                                     <th>Id</th>
                                     <th>Categoria</th>
+                                    <th>Descrição</th>
                                     <th>Mês</th>
-                                    <th>Ano</th>
+                                    <th>Data</th>
                                     <th>Valor</th>
                                     <th>Transação</th>
                                     <th>Ações</th>
@@ -91,8 +93,9 @@ $amount = $valor_entrada - $valor_saida;
                                     <tr>
                                         <td><?php echo $financa['id']; ?></td>
                                         <td><?php echo $financa['category']; ?></td>
+                                        <td><?php echo $financa['description']; ?></td>
                                         <td><?php echo $financa['month']; ?></td>
-                                        <td><?php echo $financa['year']; ?></td>
+                                        <td><?php echo $financa['date']; ?></td>
                                         <td><?php echo $financa['value']; ?></td>
                                         <td><?php echo $financa['transaction']; ?></td>
                                         <td>
