@@ -36,8 +36,8 @@ CREATE TABLE transaction (
    created_at DATE NOT NULL,
    category_id INT NOT NULL,
    month_id INT NOT NULL,
-   FOREIGN KEY (category_id) REFERENCES category (id),
-   FOREIGN KEY (month_id) REFERENCES month (id),
+   FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE,
+   FOREIGN KEY (month_id) REFERENCES month (id) ON DELETE CASCADE,
    PRIMARY KEY (id)
 );
 

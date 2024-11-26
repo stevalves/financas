@@ -27,7 +27,7 @@ $categorias = mysqli_query($conn, $sql);
                     <div class="card-header">
                         <h4>
                             Categoria
-                            <a href="create_category.php>" class="btn btn-primary float-end">Adicionar</a>
+                            <a href="create_category.php" class="btn btn-primary float-end">Adicionar</a>
                             <a href="index.php" class="btn btn-danger float-end mx-2">Voltar</a>
                         </h4>
                     </div>

@@ -33,7 +33,7 @@ if (isset($_POST['delete_month'])) {
 }
 
 if (isset($_POST['create_category'])) {
-    $year = trim($_POST['txtName']);
+    $name = trim($_POST['txtName']);
 
     $sql = "INSERT INTO category (name) VALUES('$name')";
 
