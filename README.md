@@ -1,7 +1,7 @@
 # 💰 **Finanças**
 ### [![](https://img.shields.io/badge/-youtube-%23333?style=for-the-badge&logo=youtube&logoColor=red)](https://youtu.be/QZq8zF3BIxc)
 
-> Um projeto para gerenciamento financeiro desenvolvido como parte da avaliação **P2** na disciplina **Desenvolvimento Web**, ministrada pelo professor **Valdir**.
+> Um projeto para gerenciamento financeiro desenvolvido como parte da avaliação **P2** na disciplina **Desenvolvimento Web**, ministrada pelo professor **Valdir**, na faculdade **Unimar**.
 
 ---
 
@@ -20,6 +20,12 @@ O **Finanças** é uma aplicação simples e eficiente para gerenciar suas finan
 - **Bootstrap 5**: Para criar estilos modernos e layouts responsivos.  
 - **PHP**: Para implementar a lógica e interatividade da aplicação.  
 - **MySQL**: Para gerenciar e armazenar os dados do sistema.  
+
+---
+
+## 👥 **Integrantes**
+- *Estevão Alves dos Santos* RA: *1990000*
+- *Vanessa Kaori Kurauchi* RA: *2002344*
 
 ---
 
