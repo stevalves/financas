@@ -51,7 +51,7 @@ if (!isset($_GET['id'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            Editar Finanças <i class="bi bi-person-fill-gear"></i>
+                            Editar Finanças
                             <a href="financa.php?id=<?php echo $financa['month_id'] ?>" class="btn btn-danger float-end">Voltar</a>
                         </h4>
                     </div>
