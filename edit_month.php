@@ -34,7 +34,7 @@ if (!isset($_GET['id'])) {
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            Editar Mês <i class="bi bi-person-fill-gear"></i>
+                            Editar Mês
                             <a href="index.php" class="btn btn-danger float-end">Voltar</a>
                         </h4>
                     </div>
